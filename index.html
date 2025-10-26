@@ -6,49 +6,63 @@
   <title>Pertinax Studio</title>
   <link rel="icon" type="image/x-icon" href="images/pertinax.ico">
   <style>
-  
+    /* Reset + layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(180deg, #1e1110, #6e3122, #b33f22, #b35f22, #b35f22);
       color: white;
       text-align: center;
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       justify-content: flex-start;
-
-      /* Add some top padding so it’s not stuck at the very top */
+      align-items: center;
       padding-top: 50px;
     }
+
+    main {
+      flex: 1; /* 👈 makes main grow to fill space */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     h1 {
       font-size: 4em;
       margin-bottom: -10px;
       text-shadow:
         -2px -2px 0 #633,
-        2px -2px 0 #633,
-        -2px 2px 0 #633,
-        2px 2px 0 #633;
+         2px -2px 0 #633,
+        -2px  2px 0 #633,
+         2px  2px 0 #633;
     }
-    h2{
+
+    h2 {
       font-size: 1.5em;
       text-shadow:
         -1px -1px 0 #901010,
-        1px -1px 0 #901010,
-        -1px 1px 0 #901010,
-        1px 1px 0 #901010;
+         1px -1px 0 #901010,
+        -1px  1px 0 #901010,
+         1px  1px 0 #901010;
     }
+
     p {
       font-size: 1em;
-      color:#DDDDDD;
+      color: #DDDDDD;
       text-shadow:
         -1px -1px 0 #222,
-        1px -1px 0 #222,
-        -1px 2px 0 #222,
-        1px 1px 0 #222;
+         1px -1px 0 #222,
+        -1px  1px 0 #222,
+         1px  1px 0 #222;
     }
+
     .button {
       display: block;
       width: 200px;
@@ -60,49 +74,67 @@
       border-radius: 4px;
       transition: all 0.15s;
     }
+
     .button:hover {
       background: #FFFFFF;
-      transform: scale(1.075); 
-      color: #000000; 
+      transform: scale(1.075);
+      color: #000000;
+    }
+
+    footer {
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.45));
+      color: #f1f1f1;
+      text-align: center;
+      padding: 15px 10px;
+      font-family: 'Segoe UI', sans-serif;
+      box-sizing: border-box;
+      margin: 0; /* 👈 remove top margin that caused the gap */
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    footer p {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: #f1f1f1;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1><b>Pertinax Studio</b></h1>
-  <p style="margin-bottom:50px">"Where we keep on moving forward"</p>
-  <br/>
-  <!--<h2>Community</h2>-->
-  <a class="button" href="/discord"><b>Discord</b></a>
-  <!--<a class="button" href="/twitter">Twitter</a> -->
-  <a class="button" href="/youtube"><b>YouTube</b></a>
-  <!-- ====== Footer Section ====== -->
-<footer style="
-  width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.45));
-  color: #f1f1f1;
-  text-align: center;
-  padding: 15px 10px;
-  font-family: 'Segoe UI', sans-serif;
-  margin-top: 100px;
-  box-sizing: border-box;
-">
-  <h3 style="margin-bottom: 10px; letter-spacing: 1px;">Pertinax Studio</h3>
-  <p style="font-size: 14px; opacity: 0.8; margin-bottom: 50px;">
-    © 2025 Pertinax Studio. All rights reserved.<br>
-    Website designed and developed by <strong>FATE_DEV</strong>.
-  </p>
+  <main>
+    <h1><b>Pertinax Studio</b></h1>
+    <p style="margin-bottom:50px">"Where we keep on moving forward"</p>
+    <a class="button" href="/discord"><b>Discord</b></a>
+    <a class="button" href="/youtube"><b>YouTube</b></a>
+  </main>
 
-  <div style="margin: 15px 0;">
-    <a href="https://discord.com/users/550873224624472115" target="_blank" style="color:#f1f1f1; text-decoration:none; margin:0 10px;">Discord</a> |
-    <a href="https://github.com/XZ-LF" target="_blank" style="color:#f1f1f1; text-decoration:none; margin:0 10px;">GitHub</a> |
-    <a href="mailto:contact.ethrix@gmail.com" style="color:#f1f1f1; text-decoration:none; margin:0 10px;">Email</a>
-  </div>
-
-  <p style="font-size: 12px; opacity: 0.6;">
-    Your average fullstack Roblox developer.
-  </p>
-</footer>
-
-
+  <footer>
+    <h3>Pertinax Studio</h3>
+    <p>© 2025 Pertinax Studio. All rights reserved.<br>
+       Website designed and developed by <strong>FATE_DEV</strong>.
+    </p>
+    <div>
+      <a href="https://discord.com/users/550873224624472115" target="_blank">Discord</a> |
+      <a href="https://github.com/XZ-LF" target="_blank">GitHub</a> |
+      <a href="mailto:contact.ethrix@gmail.com">Email</a>
+    </div>
+    <p style="font-size: 12px; opacity: 0.6;">
+      Your average fullstack Roblox developer.
+    </p>
+  </footer>
 </body>
 </html>

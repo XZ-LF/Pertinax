@@ -8,49 +8,56 @@
   <style>
     /* Reset + layout */
     html, body {
-      height: 100%;
+      height: 100vh;
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      color: white;
+      position: relative;
     }
 
     body {
-      font-family: Arial, sans-serif;
       background: linear-gradient(180deg, #1e1110, #6e3122, #b33f22, #b35f22, #b35f22);
-      color: white;
-      text-align: center;
-      justify-content: flex-start;
-      align-items: center;
-      padding-top: 50px;
+      background-size: 125% 125%;
+      animation: gradientShift 20s ease infinite;
     }
 
     main {
-      flex: 1; /* 👈 makes main grow to fill space */
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding-top: 50px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
     }
 
+    h1, p, .button, footer {
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- Title with breathing glow --- */
     h1 {
       font-size: 4em;
       margin-bottom: -10px;
       text-shadow:
-        -2px -2px 0 #633,
-         2px -2px 0 #633,
-        -2px  2px 0 #633,
-         2px  2px 0 #633;
-    }
-
-    h2 {
-      font-size: 1.5em;
-      text-shadow:
-        -1px -1px 0 #901010,
-         1px -1px 0 #901010,
-        -1px  1px 0 #901010,
-         1px  1px 0 #901010;
+        -2px -2px 0 #623,
+         2px -2px 0 #623,
+        -2px  2px 0 #623,
+         2px  2px 0 #623;
+      animation: fadeUp 0.6s ease-out 0.0s forwards, glowPulse 3s ease-in-out infinite;
     }
 
     p {
@@ -61,6 +68,8 @@
          1px -1px 0 #222,
         -1px  1px 0 #222,
          1px  1px 0 #222;
+      margin-bottom: 30px;
+      animation: fadeUp 0.6s ease-out 0.2s forwards;
     }
 
     .button {
@@ -75,6 +84,9 @@
       transition: all 0.15s;
     }
 
+    .button:nth-of-type(1) { animation: fadeUp 0.6s ease-out 0.4s forwards; }
+    .button:nth-of-type(2) { animation: fadeUp 0.6s ease-out 0.6s forwards; }
+
     .button:hover {
       background: #FFFFFF;
       transform: scale(1.075);
@@ -83,41 +95,118 @@
 
     footer {
       width: 100%;
+      align-self: stretch;
       background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.45));
       color: #f1f1f1;
       text-align: center;
       padding: 15px 10px;
       font-family: 'Segoe UI', sans-serif;
       box-sizing: border-box;
-      margin: 0; /* 👈 remove top margin that caused the gap */
+      margin: 0;
+      animation: fadeUp 0.6s ease-out 0.8s forwards;
     }
 
-    footer h3 {
-      margin-bottom: 10px;
-      letter-spacing: 1px;
+    footer h3 { margin-bottom: 10px; letter-spacing: 1px; }
+    footer p { font-size: 14px; opacity: 0.8; margin-bottom: 20px; }
+    footer a { color: #f1f1f1; text-decoration: none; margin: 0 10px; }
+    footer a:hover { text-decoration: underline; }
+
+    /* --- Animations --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    footer p {
-      font-size: 14px;
-      opacity: 0.8;
-      margin-bottom: 20px;
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    footer a {
-      color: #f1f1f1;
-      text-decoration: none;
-      margin: 0 10px;
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow:
+          0 0 8px #ff6b3f,
+          0 0 12px #ff6b3f,
+          0 0 16px #ff6b3f,
+          0 0 20px #ff6b3f;
+      }
+      50% {
+        text-shadow:
+          0 0 4px #ff6b3f,
+          0 0 8px #ff6b3f,
+          0 0 12px #ff6b3f,
+          0 0 16px #ff6b3f;
+      }
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    /* --- Noise overlay --- */
+    .noise {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      pointer-events: none;
+      background: repeating-radial-gradient(
+        circle,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      z-index: 1;
     }
+
+    /* --- Floating particles --- */
+    .particles {
+      position: fixed;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 3px, transparent 3px);
+      background-size: 35px 35px;
+      animation: moveParticles 25s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes moveParticles {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(300px,300px); }
+    }
+
+    /* --- Bottom large glowing light behind footer --- */
+    .bottom-glow {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,155,1) 0%, transparent 100%);
+      filter: blur(200px);
+      animation: glowBottom 6s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0; /* behind everything */
+    }
+
+    @keyframes glowBottom {
+      0% { transform: translateX(-50%) scale(1); opacity: 0.1; }
+      50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1); opacity: 0.1; }
+    }
+
   </style>
 </head>
 <body>
+  <!-- Bottom glow -->
+  <div class="bottom-glow"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- Floating particles -->
+  <div class="particles"></div>
+
   <main>
     <h1><b>Pertinax Studio</b></h1>
-    <p style="margin-bottom:50px">"Where we keep on moving forward"</p>
+    <p>"Where we keep on moving forward"</p>
     <a class="button" href="/discord"><b>Discord</b></a>
     <a class="button" href="/youtube"><b>YouTube</b></a>
   </main>

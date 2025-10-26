@@ -6,6 +6,7 @@
   <title>Pertinax Studio</title>
   <link rel="icon" type="image/x-icon" href="images/pertinax.ico">
   <style>
+  
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(180deg, #1e1110, #6e3122, #b33f22, #b35f22);
@@ -17,10 +18,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      justify-content: flex-start;
+
+      /* Add some top padding so it’s not stuck at the very top */
+      padding-top: 150px;
     }
     h1 {
       font-size: 4em;
-      margin-bottom: 10px;
+      margin-bottom: -10px;
       text-shadow:
         -2px -2px 0 #633,
         2px -2px 0 #633,
@@ -38,6 +43,7 @@
     p {
       font-size: 1em;
       color:#DDDDDD;
+      margin-bottom: 150px;
       text-shadow:
         -1px -1px 0 #222,
         1px -1px 0 #222,
